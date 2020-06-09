@@ -22,21 +22,23 @@ export const Login = () => {
     axios
       .get(`http://localhost:5000/users/${emailId}`)
       .then((response) => {
-        console.log("Success");
         let passwordVerified = passwordHash.verify(
           password,
           response.data.data
         );
+        console.log(passwordVerified)
         if (passwordVerified) {
           axios
             .get(`http://localhost:5000/users/loggedIn/${emailId}`)
             .then((res) => {
               console.log(res);
-              history.push("/");
+              history.push("/home", emailId);
             })
             .catch((error) => console.log(error));
         }
+        else{
         console.log("Incorrect Password");
+        }
       })
       .catch((error) => console.log(error.message));
   };

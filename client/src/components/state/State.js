@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Table, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const State = () => {
+
+    const location = useLocation();
+    // console.log("emailId", location.state);
 
     const [activeUsers, setActiveUsers] = useState([]);
     useEffect(() => {
@@ -13,10 +17,9 @@ export const State = () => {
             setActiveUsers(response.data.data);
         })
         .catch((error) => console.log(error.message));
-        
         //eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
-  const history = useHistory();
+        const history = useHistory();
   const handleLogout = (e) => {
     e.preventDefault();
     history.push("/login");
@@ -32,7 +35,7 @@ export const State = () => {
     </TableRow>
   </TableHead>
   <TableBody>
-  {activeUsers.map((user, index) => (
+  {activeUsers.filter((obj) => obj.email_id != location.state).map((user, index) => (
                   <TableRow key={index}>
                     <TableCell style={ { textAlign: "center" }}>{user.email_id}</TableCell>
                   </TableRow>

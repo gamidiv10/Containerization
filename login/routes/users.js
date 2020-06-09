@@ -10,6 +10,6 @@ router
 
 router
     .route('/loggedIn/:emailId')
-    .get(getUser)
+    .get(setOnline)
 
 module.exports = router;

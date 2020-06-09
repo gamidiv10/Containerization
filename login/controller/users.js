@@ -5,12 +5,13 @@ exports.getUser = (req, res, next) => {
     try{
     connection.query(sql, function (err, result){
         if(!err){
-        console.log("Retrieved");
+        console.log("Password Retrieved");
         return res.status(200).json({
-            success: true,
+            success: result.length,
             data: result[0] != null ? result[0].password : "NoRecords"
           });
         }
+        
         else{
             console.log(err);
         }
@@ -23,11 +24,11 @@ catch (e) {
 exports.setOnline = (req, res, next) => {
 
     var sql = `insert into status values("${req.params.emailId}", true, now()) 
-    on duplicate key update online=true, time_stamp=now()"`;
+    on duplicate key update online=true, time_stamp=now()`;
     connection.query(sql, function (err, result){
         console.log(sql);
         if(!err){
-        console.log("Retrieved");
+        console.log("Status Updated");
         return res.status(200).json({
             success: true
           });

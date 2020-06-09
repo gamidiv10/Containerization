@@ -23,12 +23,11 @@ export const Register = () => {
         setLastName(e.target.value);
     }
     const handlePassword = (e) => {
-        setPassword(e.target.value);
+        setPassword(passwordHash.generate(e.target.value));
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setPassword(passwordHash.generate(password));
         axios.post('http://localhost:8000/users/register', {
             emailId,
             password,
