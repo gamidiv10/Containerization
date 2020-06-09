@@ -8,7 +8,7 @@ exports.getUser = (req, res, next) => {
         console.log("Retrieved");
         return res.status(200).json({
             success: true,
-            data: result[0].password
+            data: result[0] != null ? result[0].password : "NoRecords"
           });
         }
         else{

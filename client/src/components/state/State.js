@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@material-ui/core";
+import { Button, Table, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export const State = () => {
 
-    const [activeUsers, setActiveUsers] = useState(null);
+    const [activeUsers, setActiveUsers] = useState([]);
     useEffect(() => {
         axios
         .get(`http://localhost:8080/users/`)
         .then((response) => {
-        
             setActiveUsers(response.data.data);
-            // console.log(activeUsers);
         })
         .catch((error) => console.log(error.message));
         
         //eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
   const history = useHistory();
-
-
   const handleLogout = (e) => {
     e.preventDefault();
     history.push("/login");
@@ -28,8 +24,22 @@ export const State = () => {
 
   return (
     <div>
-        {/* <p>{activeUsers}</p> */}
-        <Button onClick={handleLogout} color="primary" variant="outlined">
+      <h3 style={ { marginLeft: "40%", width: "20%", marginTop: "5%"}}>You are Online. The other online users are listed below</h3>
+      <Table style={ { width: "20%", marginTop: "5%", marginLeft: "40%", marginRight: "40%" }}>
+  <TableHead>
+    <TableRow> 
+      <TableCell style={ { textAlign: "center" }} scope="col"><b>User</b></TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
+  {activeUsers.map((user, index) => (
+                  <TableRow key={index}>
+                    <TableCell style={ { textAlign: "center" }}>{user.email_id}</TableCell>
+                  </TableRow>
+                ))}
+  </TableBody>
+  </Table>
+        <Button onClick={handleLogout} style={ { marginTop: "10%" }} color="primary" variant="outlined">
           Logout
         </Button>   
     </div>

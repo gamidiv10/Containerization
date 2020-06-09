@@ -52,6 +52,8 @@ export const Register = () => {
     <div>
       <h1>State Management</h1>
       <form className="register-form" onSubmit={handleSubmit}>
+        <br />
+        <br />
         <TextField
           variant="outlined"
           onChange={handleFirstName}
