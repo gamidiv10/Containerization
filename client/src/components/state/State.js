@@ -12,7 +12,7 @@ export const State = () => {
     const [activeUsers, setActiveUsers] = useState([]);
     useEffect(() => {
         axios
-        .get(`http://localhost:8080/users/`)
+        .get(`https://stateinfo-y6nn3qcdoq-de.a.run.app/users/`)
         .then((response) => {
             setActiveUsers(response.data.data);
         })
@@ -24,7 +24,7 @@ export const State = () => {
     e.preventDefault();
     const emailId = location.state;
     axios
-    .get(`http://localhost:8080/users/loggedOut/${emailId}`)
+    .get(`https://stateinfo-y6nn3qcdoq-de.a.run.app/users/loggedOut/${emailId}`)
     .then((res) => {
       console.log(res);
     }).catch((error) => console.log(error));

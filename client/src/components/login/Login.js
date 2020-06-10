@@ -20,7 +20,7 @@ export const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .get(`http://localhost:5000/users/${emailId}`)
+      .get(`https://login-y6nn3qcdoq-de.a.run.app/users/${emailId}`)
       .then((response) => {
         let passwordVerified = passwordHash.verify(
           password,
@@ -29,7 +29,7 @@ export const Login = () => {
         console.log(passwordVerified)
         if (passwordVerified) {
           axios
-            .get(`http://localhost:5000/users/loggedIn/${emailId}`)
+            .get(`https://login-y6nn3qcdoq-de.a.run.app/users/loggedIn/${emailId}`)
             .then((res) => {
               console.log(res);
               history.push("/home", emailId);

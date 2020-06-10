@@ -28,7 +28,7 @@ export const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/users/register', {
+        axios.post('https://register-y6nn3qcdoq-de.a.run.app/users/register', {
             emailId,
             password,
             firstName,
