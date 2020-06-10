@@ -22,8 +22,16 @@ export const State = () => {
         const history = useHistory();
   const handleLogout = (e) => {
     e.preventDefault();
+    const emailId = location.state;
+    axios
+    .get(`http://localhost:8080/users/loggedOut/${emailId}`)
+    .then((res) => {
+      console.log(res);
+    }).catch((error) => console.log(error));
+        
     history.push("/login");
   };
+
 
   return (
     <div>
@@ -35,7 +43,7 @@ export const State = () => {
     </TableRow>
   </TableHead>
   <TableBody>
-  {activeUsers.filter((obj) => obj.email_id != location.state).map((user, index) => (
+  {activeUsers.filter((obj) => obj.email_id !== location.state).map((user, index) => (
                   <TableRow key={index}>
                     <TableCell style={ { textAlign: "center" }}>{user.email_id}</TableCell>
                   </TableRow>
