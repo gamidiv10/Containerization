@@ -12,5 +12,5 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use('/users', users);
 
-const PORT = 8000;
+const PORT = 8080;
 app.listen(PORT, console.log(`Server running in development mode on port ${PORT}`.yellow.bold));

@@ -5,7 +5,9 @@ exports.getUser = (req, res, next) => {
     try{
     connection.query(sql, function (err, result){
         if(!err){
-        console.log("Password Retrieved");
+        console.log(sql);
+        console.log(result);
+
         return res.status(200).json({
             success: result.length,
             data: result[0] != null ? result[0].password : "NoRecords"
